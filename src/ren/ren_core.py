@@ -12,9 +12,18 @@ from datetime import datetime
 from typing import Dict, List, Optional, Any
 from pathlib import Path
 
-from ..personality.big_five_analyzer import BigFiveAnalyzer
-from ..communication.style_learner import StyleLearner
-from ..privacy.digital_guardian import DigitalGuardian
+try:
+    from ..personality.big_five_analyzer import BigFiveAnalyzer
+    from ..communication.style_learner import StyleLearner
+    from ..privacy.digital_guardian import DigitalGuardian
+except ImportError:
+    # Fallback for direct execution
+    import sys
+    import os
+    sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
+    from personality.big_five_analyzer import BigFiveAnalyzer
+    from communication.style_learner import StyleLearner
+    from privacy.digital_guardian import DigitalGuardian
 
 
 class RenCore:
